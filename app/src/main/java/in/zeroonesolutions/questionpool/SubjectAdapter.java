@@ -17,7 +17,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectViewHolder> {
     private Context mContext;
     private List<Subject> mSubjectList;
 
-    SubjectAdapter(Context mContext, List<Subject> mSubjectList) {
+    public SubjectAdapter(Context mContext, List<Subject> mSubjectList) {
         this.mContext = mContext;
         this.mSubjectList = mSubjectList;
     }
