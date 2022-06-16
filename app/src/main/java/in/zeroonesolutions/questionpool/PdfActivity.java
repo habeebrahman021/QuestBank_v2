@@ -82,8 +82,7 @@ public class PdfActivity extends AppCompatActivity {
     }
 
     public void openOrDownload(){
-
-        File myFile = new File(Environment.getExternalStorageDirectory() + "/.QuestBank/" + material_name);
+        File myFile = new File(getFilesDir(), material_name);
         if(myFile.exists()) {
             showPdf();
         }
@@ -111,12 +110,6 @@ public class PdfActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            // Create Questbank Folder is not Exists
-            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-            File folder = new File(extStorageDirectory, ".QuestBank");
-            if (!folder.exists())
-                folder.mkdir();
-
             file_name = strings[0];
             file_url = strings[1];
             try {
@@ -131,8 +124,7 @@ public class PdfActivity extends AppCompatActivity {
                 final InputStream input = new BufferedInputStream(url.openStream());
 
                 // Save the downloaded file
-                final OutputStream output = new FileOutputStream(folder + "/"
-                        + file_name);
+                final FileOutputStream output = openFileOutput(file_name, MODE_PRIVATE);
 
                 byte data[] = new byte[1024];
                 long total = 0;
@@ -173,12 +165,11 @@ public class PdfActivity extends AppCompatActivity {
     }
 
     private void showPdf() {
-        String folder = Environment.getExternalStorageDirectory().toString() + "/.QuestBank";
         String file_name = material_name;
 
         PDFView pdfView = findViewById(R.id.pdf_view);
         pdfView.setVisibility(View.VISIBLE);
-        pdfView.fromFile(new File(folder,file_name))
+        pdfView.fromFile(new File(getFilesDir(),file_name))
                 .enableSwipe(true) // allows to block changing pages using swipe
                 .swipeHorizontal(false)
                 .enableDoubletap(true)

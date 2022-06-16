@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import in.zeroonesolutions.questionpool.fragments.ExploreFragment;
 import in.zeroonesolutions.questionpool.fragments.HomeFragment;
 import in.zeroonesolutions.questionpool.fragments.SavedFragment;
 
@@ -69,10 +68,7 @@ public class HomeActivity extends AppCompatActivity {
                         loadFragment(new HomeFragment());
                         getSupportActionBar().setTitle("Home");
                         return true;
-                    case R.id.action_explore:
-                        loadFragment(new ExploreFragment());
-                        getSupportActionBar().setTitle("Explore");
-                        return true;
+
                     case R.id.action_saved:
                         loadFragment(new SavedFragment());
                         getSupportActionBar().setTitle("Saved");
